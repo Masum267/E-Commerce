@@ -35,49 +35,53 @@ function Products() {
     }
 
     const filterProduct = (cat) => {
-        const updatedList = data.filter((x)=>x.category === cat);
+        const updatedList = data.filter((x) => x.category === cat);
         console.log(updatedList)
         setFilter(updatedList);
     }
 
     const ShowProducts = () => {
         return (
-            <div>
-                <div className='buttons flex justify-center mb-5 pb-5'>
-                    <button className='me-2' onClick={()=>setFilter(data)}>All</button>
-                    <button className='me-2' onClick={()=>filterProduct("men's clothing")}>Men's Collection</button>
-                    <button className='me-2' onClick={()=>filterProduct("women's clothing")}>Women's Collection</button>
-                    <button className='me-2' onClick={()=>filterProduct("jewelery")}>Jewelery Collection</button>
-                    <button className='me-2' onClick={()=>filterProduct("electronics")}>Electronic Collection</button>
+            <>
+                <div className='buttons flex justify-center mb-5 pb-5 space-x-6 font-medium'>
+                    <button className='me-2 hover:text-slate-500' onClick={() => setFilter(data)}>All</button>
+                    <button className='me-2 hover:text-slate-500' onClick={() => filterProduct("men's clothing")}>Men's Collection</button>
+                    <button className='me-2 hover:text-slate-500' onClick={() => filterProduct("women's clothing")}>Women's Collection</button>
+                    <button className='me-2 hover:text-slate-500' onClick={() => filterProduct("jewelery")}>Jewelery Collection</button>
+                    <button className='me-2 hover:text-slate-500' onClick={() => filterProduct("electronics")}>Electronic Collection</button>
                 </div>
-                {filter.map((product) => {
-                    return (
-                        <div className='grid grid-cols-3 gap-6'>
-                            <div className='md:w-1/4 pr-4 pl-4 mb-4'>
+                <div className='container mx-auto mt-8 ml-10'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                        {filter.map((product) => {
+                            return (
 
-                                <div className="h-full max-w-sm  text-center bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
-                                key={product.id}
-                                >
-                                    <NavLink to="#">
-                                        <img className="p-8 rounded-t-lg" src={product.image} alt={product.title} height='250px' />
-                                    </NavLink>
-                                    <div className="px-5 pb-5">
+                                <div className=''>
+
+                                    <div className="h-full max-w-sm overflow-hidden text-center bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+                                        key={product.id}
+                                    >
                                         <NavLink to="#">
-                                            <h5 className="text-xl pb-5 font-semibold tracking-tight text-gray-900 dark:text-white">{product.title.substring(0,12)}...</h5>
+                                            <img className="p-8 rounded-t-lg h-96 w-full" src={product.image} alt={product.title}  />
                                         </NavLink>
-                                        
-                                        <div className="flex items-center justify-between">
-                                            <span className="text-3xl font-bold text-gray-900 dark:text-white">${product.price}</span>
-                                            <NavLink to={`/products/${product.id}`} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Details</NavLink>
+                                        <div className="px-5 pb-5">
+                                            <NavLink to="#">
+                                                <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{product.title.substring(0, 12)}...</h5>
+                                            </NavLink>
+
+                                            <div className="flex items-center justify-between">
+                                                <span className="text-3xl font-bold text-gray-900 dark:text-white">${product.price}</span>
+                                                <NavLink to={`/products/${product.id}`} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Details</NavLink>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
 
-                            </div>
-                        </div>
-                    )
-                })}
-            </div>
+                            )
+                        })}
+                    </div>
+                </div>
+            </>
         )
     }
 

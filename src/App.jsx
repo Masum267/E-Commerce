@@ -1,4 +1,5 @@
 import './App.css'
+import About from './Component/About'
 import Cart from './Component/Cart'
 import Home from './Component/Home'
 import Navbar from './Component/Navbar'
@@ -15,6 +16,7 @@ function App() {
       <Route path='/' element={<Home/>} />
       <Route path='/products' element={<Products/>} />
       <Route path='/products/:id' element={<Product/>} />
+      <Route path='/about' element={<About/>} />
       <Route path='/cart' element={<Cart/>} />
     </Routes>
     </>
