@@ -1,11 +1,18 @@
 import React, {useState, useEffect, useLayoutEffect} from 'react'
-import { NavLink, useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addCart } from './redux/action';
 
 const Product = ()=> {
 
     const {id} = useParams();
     const [product, setProduct] = useState([]);
     const [loading, setLoading] = useState(false);
+
+    const dispatch = useDispatch();
+    const addProduct =(product) =>{
+        dispatch(addCart(product));
+    }
 
     useEffect(() => {
         const getProduct = async () => {
@@ -45,7 +52,7 @@ const Product = ()=> {
                     <p>
                         {product.description}
                     </p>
-                    <button className='px-4 py-2 border rounded-md hover:text-white hover:bg-slate-900'>
+                    <button className='px-4 py-2 border rounded-md hover:text-white hover:bg-slate-900' onClick={()=> addProduct(product)}>
                         Add to Cart
                     </button>
                     <NavLink to="/cart" className='ms-2 px-3 py-2 border rounded-md hover:text-white hover:bg-slate-900'>
